@@ -3,12 +3,14 @@ Fazer um código que crie um formulário de cadastro para Clientes com. CPF, ida
 -O cadastro será feito para 5 clientes;
 -Utilize Struct
 -Faça a leitura dos dados;
--Ao final imprimir a quantidade de clientes com renda superior a 5000.00 (mudei pra 8 para executar mais rápido o programa)
+-Ao final imprimir a quantidade de clientes com renda superior a 8
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+int numItems = 5;
 
 typedef struct
 {
@@ -20,7 +22,7 @@ typedef struct
 }clientes;
 
 int main (void){
-    clientes clientList[5];
+    clientes *clientList = malloc(numItems * sizeof(clientes));
     int contador = 0;
 
     for(int i = 0; i < 5; i++){
@@ -41,6 +43,9 @@ int main (void){
         }
     }
     printf("\na quantidade de clientes com renda superior a 8 é: %d",contador);
+
+    free(clientList);
+    clientList = NULL;
 
     return 0;
 }
