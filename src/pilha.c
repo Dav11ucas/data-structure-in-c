@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<conio.h>
 
-#define TAM 10
+#define TAM 5
 
 typedef struct{
     int vet[TAM];

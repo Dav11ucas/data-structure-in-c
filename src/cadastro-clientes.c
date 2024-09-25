@@ -1,11 +1,3 @@
-/*
-Fazer um código que crie um formulário de cadastro para Clientes com. CPF, idade, Renda e Nome.
--O cadastro será feito para 5 clientes;
--Utilize Struct
--Faça a leitura dos dados;
--Ao final imprimir a quantidade de clientes com renda superior a 5000.00 (mudei pra 8 para executar mais rápido o programa)
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -24,7 +16,6 @@ int main (void){
     int contador = 0;
 
     for(int i = 0; i < 5; i++){
-        printf("\e[1;1H\e[2J"); // "limpa o prompt"
         printf("\ndigite o CPF do %d cliente\n",i+1);
         scanf("%d",&clientList[i].cpf);
         printf("\ndigite a IDADE do %d cliente\n",i+1);
@@ -36,11 +27,11 @@ int main (void){
         gets(clientList[i].nome);
     }   
     for (int i = 0; i < 5; i++){
-        if ( clientList[i].renda > 8){
+        if ( clientList[i].idade >= 18){
             contador++;
         }
     }
-    printf("\na quantidade de clientes com renda superior a 8 é: %d",contador);
+    printf("\na quantidade de clientes maiores de idade (+18) é: %d",contador);
 
     return 0;
 }

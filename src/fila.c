@@ -1,41 +1,50 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<conio.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct{
-    int mat;
-    char nome[40];
-    float nota;
-}aluno;
+#define TAM 5
 
-int main(void){
-    aluno ed[4];
-    aluno java[3];
-    printf("\nTurma de Estrutura de dados:");
-    for(int i=0; i<4; i++){
-        printf("\n Digite a matricula do %dº aluno", i+1);
-        scanf("%d",&ed[i].mat);
-        printf("\n Digite a nota do %dº aluno", i+1); 
-        scanf("%f", &ed[i].nota); 
-        getchar(); 
-        printf("\n Digite a nome do %dº aluno", i+1); 
-        gets(ed[i].nome);
-    }
-    printf("\nTurma de Java: ");
-    for(int i=0; i<3;i++){
-        printf("\n Digite a matricula do %dº aluno", i+1); 
-        scanf("%d",&java[i].mat); 
-        printf("\n Digite a nota do %dº aluno", i+1); 
-        scanf("%f", &java[i].nota); 
-        getchar(); 
-        printf("\n Digite a nome do %dº aluno", i+1);
-        gets(java[i].nome);
-    }
-    for(int i=0; i<4; i++){
-        for(int j=0; j<3; j++){
-            if(ed[i].mat == java[j].mat){
-                puts(ed[i].nome);
-            }
-        }
-    }
+typedef struct {
+    int R, F;
+    int vet[TAM];
+} filavet;
+
+void enfileirar(int valor, filavet *p) {
+    if (p->R == TAM - 1) { 
+        printf("\nFila Cheia!");
+        exit(0); 
+    } 
+    p->R++; 
+    p->vet[p->R] = valor; 
+}
+
+int desenfileirar(filavet *p) {
+    int aux;
+    if (p->F > p->R) { // Verifica se a fila está vazia
+        printf("\nFila Vazia!");
+        exit(1);
+    } 
+    aux = p->vet[p->F];
+    p->F++;
+    return aux;
+}
+
+int main(void) {
+    filavet fila;
+    int valor;
+    fila.R = -1; // Inicializa o índice do último elemento
+    fila.F = 0;  // Inicializa o índice do primeiro elemento
+
+    // Enfileirando valores
+    for (int i = 0; i < TAM; i++) {
+        printf("Digite o valor a ser enfileirado: \n");
+        scanf("%d", &valor);
+        enfileirar(valor, &fila);
+    } 
+
+    // Desenfileirando valores
+    for (int i = 0; i < TAM; i++) {
+        printf("\n%d", desenfileirar(&fila)); 
+    } 
+
+    return 0; 
 }
